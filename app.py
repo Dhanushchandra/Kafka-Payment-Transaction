@@ -2,8 +2,8 @@ from kafka import KafkaConsumer
 from pymongo import MongoClient
 import json
 
-mongo_client = MongoClient('localhost', 27017)  # Connect to your MongoDB instance
-db = mongo_client["Kafka-Test"]  # Use (or create) a database
+mongo_client = MongoClient('127.0.0.1', 30001, directConnection=True)
+db = mongo_client["Kafka-Test"]
 success = db["success"]
 pending = db["pending"]
 failed = db["failed"]
