@@ -1,0 +1,28 @@
+docker network create mongoNet
+docker network ls
+docker run -d -p 30001:27017 --net mongoNet --name m1 mongo --replSet mongoSet
+docker run -d -p 30002:27017 --net mongoNet --name m2 mongo --replSet mongoSet
+docker run -d -p 30003:27017 --net mongoNet --name m3 mongo --replSet mongoSet
+
+
+//main mongo
+config = {"_id":"mongoSet","members":[
+{
+"_id":0,
+"host":"m1:27017"
+},
+{
+"_id":1,
+"host":"m2:27017"
+},
+{
+"_id":2,
+"host":"m3:27017"
+}
+]}
+
+rs.initiate(config)
+rs.status()
+
+//inside secondary mongo
+rs.secondaryOk()

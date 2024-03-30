@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+  </head>
+  <body>
+    <script>
+      var socket = io("http://localhost:8001");
+      socket.on("my_event", function (data) {
+        console.log(data);
+      });
+    </script>
+  </body>
+</html>
